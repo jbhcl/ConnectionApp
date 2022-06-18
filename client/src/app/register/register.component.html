@@ -2,13 +2,33 @@
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
     <div class="form-group">
-        <input type="text" class="form-control" formControlName="username" placeholder="Username">
+        <input [class.is-invalid]="registerForm.get('username').errors
+                && registerForm.get('username').touched" type="text" class="form-control" formControlName="username"
+            placeholder="Username">
+        <div class="invalid-feedback">Please enter a username</div>
     </div>
     <hr>
     <div class="form-group">
-        <input type="password" class="form-control" formControlName="password" placeholder="Password">
-        <input type="password" class="form-control" formControlName="confirmPassword"
-            placeholder="Confirm Password">
+        <input type="password" class="form-control" formControlName="password" placeholder="Password"
+            [class.is-invalid]="registerForm.get('password').errors
+                    && registerForm.get('password').touched">
+        <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('required')">Please enter a password
+        </div>
+        <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('minlength')">Your password must be
+            at least 4 characters
+        </div>
+        <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('maxlength')">Your password must be
+            at most 8 characters
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password"
+            [class.is-invalid]="registerForm.get('confirmPassword').errors
+                    && registerForm.get('confirmPassword').touched">
+        <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').hasError('required')">Please confirm
+            your password</div>
+        <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').hasError('isMatching')">Your passwords
+            do not match</div>
     </div>
     <div class="form-group text-center">
         <button class="btn btn-success mr-2" type="submit">Register</button>
