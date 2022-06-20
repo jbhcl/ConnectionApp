@@ -25,6 +25,7 @@
             <th style="width: 20%">Delete</th>
         </tr>
         <tr *ngFor="let message of messages"
+            [hidden]="loading"
             routerLink="{{container === 'Outbox'
             ? '/members/' + message.recipientUsername
             : '/members/' + message.senderUsername}}" [queryParams]="{tab: 3}">
@@ -55,7 +56,7 @@
     </table>
 </div>
 
-<div class="d-flex justify-content-center" *ngIf="pagination">
+<div class="d-flex justify-content-center" *ngIf="pagination && !loading">
     <pagination [boundaryLinks]="total" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
         [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
         nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
