@@ -89,7 +89,7 @@ namespace API.Controllers
 
             if (await _messageRepository.SaveAllAsync()) return Ok();
 
-            return BadRequest("Problem deleting the message");
+            return BadRequest("Problem deleting the message");  
         }
     }
 }
