@@ -4,6 +4,7 @@ import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Message } from '../_models/message';
+import { User } from '../_models/user';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class MessageService {
   private hubConnection: HubConnection;
   private messageThreadSource = new BehaviorSubject<Message[]>([]);
   messageThread$ = this.messageThreadSource.asObservable();
-  
+
   constructor(private http: HttpClient) { }
 
   createHubConnection(user: User, otherUsername: string) {
@@ -34,9 +35,10 @@ export class MessageService {
   }
 
   stopHubConnection() {
-    this.hubConnection.stop();
+    if (this.hubConnection)
+      this.hubConnection.stop();
   }
-  
+
   getMessages(pageNumber, pageSize, container) {
     let params = getPaginationHeaders(pageNumber, pageSize);
 
@@ -50,7 +52,7 @@ export class MessageService {
   }
 
   sendMessage(username: string, content: string) {
-    return this.http.post<Message>(this.baseUrl + 'messages', {recipientUsername: username, content});
+    return this.http.post<Message>(this.baseUrl + 'messages', { recipientUsername: username, content });
   }
 
   deleteMessage(id: number) {
