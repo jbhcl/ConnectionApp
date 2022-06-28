@@ -17,9 +17,9 @@
                         *appHasRole="['Admin', 'Moderator']">Admin</a>
                 </li>
             </ng-container>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
-            </li>
+            </li> -->
         </ul>
 
         <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
