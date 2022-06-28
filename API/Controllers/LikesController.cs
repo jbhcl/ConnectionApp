@@ -11,34 +11,34 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [Authorize]
-    public class LikesController : BaseApiController
+    public class UserConnectionsController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
-        public LikesController (IUnitOfWork unitOfWork) {
+        public UserConnectionsController (IUnitOfWork unitOfWork) {
             _unitOfWork = unitOfWork;
         }
         
         [HttpPost("{username}")]
-        public async Task<ActionResult> AddLike(string username) {
+        public async Task<ActionResult> AddUserConnectionRequest(string username) {
             var sourceUserId = User.GetUserId();
-            var likedUser = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
-            var sourceUser = await _unitOfWork.LikesRepository.GetUserWithLikes(sourceUserId);
+            var requestedUser = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
+            var sourceUser = await _unitOfWork.UserConnectionRepository.GetUserWithConnectionRequests(sourceUserId);
 
-            if (likedUser == null) return NotFound();
+            if (requestedUser == null) return NotFound();
 
             if (sourceUser.UserName == username) return BadRequest("Can you not do that");
 
-            var userLike = await _unitOfWork.LikesRepository.GetUserLike(sourceUserId, likedUser.Id);
+            var userConnectionRequest = await _unitOfWork.UserConnectionRepository.GetUserConnectionRequest(sourceUserId, requestedUser.Id);
 
-            if (userLike != null) return BadRequest("You already like this user");
+            if (userConnectionRequest != null) return BadRequest("You already like this user");
 
-            userLike = new UserLike
+            userConnectionRequest = new UserConnectionRequest
             {
                 SourceUserId = sourceUserId,
-                LikedUserId = likedUser.Id
+                RequestedUserId = requestedUser.Id
             };
 
-            sourceUser.LikedUsers.Add(userLike);
+            sourceUser.RequestedUsers.Add(userConnectionRequest);
 
             if (await _unitOfWork.Complete()) return Ok();
 
@@ -46,9 +46,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LikeDto>>> GetUserLikes([FromQuery]LikesParams likesParams) {
-            likesParams.UserId = User.GetUserId();
-            var users = await _unitOfWork.LikesRepository.GetUserLikes(likesParams);
+        public async Task<ActionResult<IEnumerable<ConnectionRequestDto>>> GetUserConnectionRequests([FromQuery]ConnectionRequestParams connectionRequestParams) {
+            connectionRequestParams.UserId = User.GetUserId();
+            var users = await _unitOfWork.UserConnectionRepository.GetUserConnectionRequests(connectionRequestParams);
 
             Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPage);
 

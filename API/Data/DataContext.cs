@@ -17,7 +17,7 @@ namespace API.Data
         {
         }
 
-        public DbSet<UserLike> Likes { get; set; }
+        public DbSet<UserConnectionRequest> ConnectionRequests { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Connection> Connections { get; set; }
@@ -38,19 +38,19 @@ namespace API.Data
                 .HasForeignKey(ur => ur.RoleId)
                 .IsRequired();
 
-            builder.Entity<UserLike>()
-                .HasKey(k => new { k.SourceUserId, k.LikedUserId });
+            builder.Entity<UserConnectionRequest>()
+                .HasKey(k => new { k.SourceUserId, k.RequestedUserId });
 
-            builder.Entity<UserLike>()
+            builder.Entity<UserConnectionRequest>()
                 .HasOne(s => s.SourceUser)
-                .WithMany(l => l.LikedUsers)
+                .WithMany(l => l.RequestedUsers)
                 .HasForeignKey(s => s.SourceUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Entity<UserLike>()
-                .HasOne(s => s.LikedUser)
-                .WithMany(l => l.LikedByUsers)
-                .HasForeignKey(s => s.LikedUserId)
+            builder.Entity<UserConnectionRequest>()
+                .HasOne(s => s.RequestedUser)
+                .WithMany(l => l.RequestedByUsers)
+                .HasForeignKey(s => s.RequestedUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Message>()

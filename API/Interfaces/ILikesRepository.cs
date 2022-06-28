@@ -6,10 +6,10 @@ using API.Helpers;
 
 namespace API.Interfaces
 {
-    public interface ILikesRepository
+    public interface IUserConnectionRepository
     {
-        Task<UserLike> GetUserLike(int sourceUserId, int likedUserId);   
-        Task<AppUser> GetUserWithLikes(int userId);
-        Task<PagedList<LikeDto>> GetUserLikes(LikesParams likesParams);
+        Task<UserConnectionRequest> GetUserConnectionRequest(int sourceUserId, int likedUserId);   
+        Task<AppUser> GetUserWithConnectionRequests(int userId);
+        Task<PagedList<ConnectionRequestDto>> GetUserConnectionRequests(ConnectionRequestParams likesParams);
     }
 }
