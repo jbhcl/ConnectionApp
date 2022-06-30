@@ -10,34 +10,34 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class LikesRepository : ILikesRepository
+    public class UserConnectionRepository : IUserConnectionRepository
     {
         private readonly DataContext _context;
-        public LikesRepository(DataContext context) {
+        public UserConnectionRepository(DataContext context) {
             _context = context;
 
         }
-        public async Task<UserLike> GetUserLike(int sourceUserId, int likedUserId)
+        public async Task<UserConnectionRequest> GetUserConnectionRequest(int sourceUserId, int likedUserId)
         {
-            return await _context.Likes.FindAsync(sourceUserId, likedUserId);
+            return await _context.ConnectionRequests.FindAsync(sourceUserId, likedUserId);
         }
 
-        public async Task<PagedList<LikeDto>> GetUserLikes(LikesParams likesParams)
+        public async Task<PagedList<ConnectionRequestDto>> GetUserConnectionRequests(ConnectionRequestParams likesParams)
         {
             var users = _context.Users.OrderBy(u => u.UserName).AsQueryable();
-            var likes = _context.Likes.AsQueryable();
+            var likes = _context.ConnectionRequests.AsQueryable();
 
             if (likesParams.predicate == "liked") {
                 likes = likes.Where(like => like.SourceUserId == likesParams.UserId);
-                users = likes.Select(like => like.LikedUser);
+                users = likes.Select(like => like.RequestedUser);
             }
 
             if (likesParams.predicate == "likedBy") {
-                likes = likes.Where(like => like.LikedUserId == likesParams.UserId);
+                likes = likes.Where(like => like.RequestedUserId == likesParams.UserId);
                 users = likes.Select(like => like.SourceUser);
             }
 
-            var likedUsers = users.Select(user => new LikeDto {
+            var likedUsers = users.Select(user => new ConnectionRequestDto {
                 Username = user.UserName,
                 KnownAs = user.KnownAs,
                 Age = user.DateOfBirth.CalculateAge(),
@@ -46,13 +46,13 @@ namespace API.Data
                 Id = user.Id
             });
 
-            return await PagedList<LikeDto>.CreateAsync(likedUsers, likesParams.PageNumber, likesParams.PageSize);
+            return await PagedList<ConnectionRequestDto>.CreateAsync(likedUsers, likesParams.PageNumber, likesParams.PageSize);
         }
 
-        public async Task<AppUser> GetUserWithLikes(int userId)
+        public async Task<AppUser> GetUserWithConnectionRequests(int userId)
         {
             return await _context.Users
-                .Include(x => x.LikedUsers)
+                .Include(x => x.RequestedUsers)
                 .FirstOrDefaultAsync(x => x.Id == userId);
         }
     }

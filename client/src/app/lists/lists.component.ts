@@ -18,11 +18,11 @@ export class ListsComponent implements OnInit {
   constructor(private memberService: MembersService) { }
   
   ngOnInit(): void {
-    this.loadLikes();
+    this.loadConnectionRequests();
   }
 
-  loadLikes() {
-    this.memberService.getLikes(this.predicate, this.pageNumber, this.pageSize).subscribe(response => {
+  loadConnectionRequests() {
+    this.memberService.getConnectionRequests(this.predicate, this.pageNumber, this.pageSize).subscribe(response => {
       this.members = response.result;
       this.pagination = response.pagination;
     });
@@ -30,7 +30,7 @@ export class ListsComponent implements OnInit {
 
   pageChanged(event: any) {
     this.pageNumber = event.page;
-    this.loadLikes();
+    this.loadConnectionRequests();
   }
 
 
