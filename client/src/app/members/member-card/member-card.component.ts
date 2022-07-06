@@ -19,7 +19,7 @@ export class MemberCardComponent implements OnInit {
 
   addConnectionRequest(member: Member) {
     this.memberService.addConnectionRequest(member.username).subscribe(() => {
-      this.toastr.success('You have liked ' + member.knownAs);
+      this.toastr.success('You have sent a connection request to ' + member.knownAs);
     });
   }
 }
