@@ -30,7 +30,7 @@ namespace API.Controllers
 
             var userConnectionRequest = await _unitOfWork.UserConnectionRepository.GetUserConnectionRequest(sourceUserId, requestedUser.Id);
 
-            if (userConnectionRequest != null) return BadRequest("You already like this user");
+            if (userConnectionRequest != null) return BadRequest("You already sent a friend request to this user");
 
             userConnectionRequest = new UserConnectionRequest
             {
@@ -42,7 +42,7 @@ namespace API.Controllers
 
             if (await _unitOfWork.Complete()) return Ok();
 
-            return BadRequest("Failed to like user");
+            return BadRequest("Failed to add user as friend");
         }
 
         [HttpGet]
