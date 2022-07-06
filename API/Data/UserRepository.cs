@@ -33,21 +33,29 @@ namespace API.Data
         public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
             var query = _context.Users.AsQueryable();
-
             query = query.Where(u => u.UserName != userParams.CurrentUsername);
-            query = query.Where(u => u.Gender == userParams.Gender);
-                        
-            var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
-            var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
 
-            query = query.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
+            if (userParams.Gender != null)
+                query = query.Where(u => u.Gender == userParams.Gender);
+
+            if (userParams.MaxAge != 999)
+            {
+                var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+                query = query.Where(u => u.DateOfBirth >= minDob);
+            }
+
+            if (userParams.MinAge != -1)
+            {
+                var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
+                query = query.Where(u => u.DateOfBirth <= maxDob);
+            }
 
             query = userParams.OrderBy switch
             {
                 "created" => query.OrderByDescending(u => u.Created),
                 _ => query.OrderByDescending(u => u.LastActive)
             };
-                        
+
             return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(_mapper
                 .ConfigurationProvider).AsNoTracking(), userParams.PageNumber, userParams.PageSize);
         }
@@ -69,10 +77,16 @@ namespace API.Data
             return await _context.Users.Where(x => x.UserName == username).Select(x => x.Gender).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<AppUser>> GetUsersAsync()
+        public Task<string> GetUserIndustry(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<MemberDto>> GetUsersAsync()
         {
             return await _context.Users
                 .Include(p => p.Photos)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
