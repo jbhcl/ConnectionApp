@@ -69,10 +69,16 @@ namespace API.Data
             return await _context.Users.Where(x => x.UserName == username).Select(x => x.Gender).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<AppUser>> GetUsersAsync()
+        public Task<string> GetUserIndustry(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<MemberDto>> GetUsersAsync()
         {
             return await _context.Users
                 .Include(p => p.Photos)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
