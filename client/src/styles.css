@@ -43,6 +43,13 @@
     background-color: #fff;
     border: 0;
     border-top: 1px solid #eee;
+    
+
+  }
+
+
+  .tab-content> .tab-pane{
     padding: 15px 0;
+    background-color: #000;
   }
   
