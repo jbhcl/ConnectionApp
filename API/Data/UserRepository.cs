@@ -74,10 +74,11 @@ namespace API.Data
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<AppUser>> GetUsersAsync()
+        public async Task<IEnumerable<MemberDto>> GetUsersAsync()
         {
             return await _context.Users
                 .Include(p => p.Photos)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
