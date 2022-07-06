@@ -54,6 +54,8 @@ export class MembersService {
       params = params.append('maxAge', userParams.maxAge.toString());
     if (userParams.gender)
       params = params.append('gender', userParams.gender);
+    if (userParams.industry)
+      params = params.append('industry', userParams.industry);
 
     return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http)
       .pipe(map(response => {

@@ -50,6 +50,9 @@ namespace API.Data
                 query = query.Where(u => u.DateOfBirth <= maxDob);
             }
 
+            if (userParams.Industry != null)
+                query = query.Where(u => u.Industry.Contains(userParams.Industry));
+
             query = userParams.OrderBy switch
             {
                 "created" => query.OrderByDescending(u => u.Created),
