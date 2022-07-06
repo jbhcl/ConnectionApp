@@ -11,6 +11,7 @@
         "Interests": "Lorem cupidatat elit ullamco dolore est.",
         "City": "Grapeview",
         "Country": "El Salvador",
+        "Industry": "Soybean Farming",
         "Photos": [
             {
                 "Url": "https://i.imgur.com/AQlhvwK.jpeg",
@@ -30,6 +31,7 @@
         "Interests": "Qui excepteur enim laborum consectetur irure.",
         "City": "Fairlee",
         "Country": "Cocos (Keeling Islands)",
+        "Industry": "Paper Manufacturing",
         "Photos": [
             {
                 "Url": "https://i.imgur.com/XHKh62N.jpeg",
@@ -49,6 +51,7 @@
         "Interests": "Non voluptate irure aliquip esse.",
         "City": "Gratton",
         "Country": "Madagascar",
+        "Industry": "Educational Services",
         "Photos": [
             {
                 "Url": "https://i.imgur.com/J55U7B2.jpeg",
@@ -68,6 +71,7 @@
         "Interests": "Occaecat reprehenderit veniam ex aliquip.",
         "City": "Waterloo",
         "Country": "Botswana",
+        "Industry": "Health Care",
         "Photos": [
             {
                 "Url": "https://i.imgur.com/ca8xd70.jpeg",
@@ -87,6 +91,7 @@
         "Interests": "Ut veniam commodo nostrud nulla laboris esse tempor enim do ea dolor eiusmod commodo eu.",
         "City": "Muse",
         "Country": "Belgium",
+        "Industry": "Public Administration",
         "Photos": [
             {
                 "Url": "https://i.imgur.com/I9aNJ7i.jpeg",
@@ -106,6 +111,7 @@
         "Interests": "Eiusmod incididunt irure veniam non ex nisi aliqua sunt sint ea consequat aute pariatur.",
         "City": "Leming",
         "Country": "Bermuda",
+        "Industry": "null",
         "Photos": [
             {
                 "Url": "https://i.imgur.com/DXk9AxH.jpeg",
@@ -125,6 +131,7 @@
         "Interests": "Veniam in ex pariatur consectetur dolor minim.",
         "City": "Lowgap",
         "Country": "Niger",
+        "Industry": "null",
         "Photos": [
             {
                 "Url": "https://i.imgur.com/ZTotAz9.jpeg",
@@ -144,6 +151,7 @@
         "Interests": "Id exercitation ullamco anim deserunt laborum sunt sunt eiusmod.",
         "City": "Westmoreland",
         "Country": "Lebanon",
+        "Industry": "null",
         "Photos": [
             {
                 "Url": "https://i.imgur.com/RJSEAdE.jpeg",
@@ -163,6 +171,7 @@
         "Interests": "Officia excepteur ipsum laborum non minim dolor in eu deserunt anim aliqua.",
         "City": "Thynedale",
         "Country": "Chad",
+        "Industry": "null",
         "Photos": [
             {
                 "Url": "https://i.imgur.com/G8EnRIw.jpeg",
@@ -182,6 +191,7 @@
         "Interests": "Ullamco consectetur mollit aliquip et.",
         "City": "Sunwest",
         "Country": "Libya",
+        "Industry": "null",
         "Photos": [
             {
                 "Url": "https://i.imgur.com/FDKYADh.jpeg",
