@@ -11,6 +11,7 @@
         "Interests": "Lorem cupidatat elit ullamco dolore est.",
         "City": "Grapeview",
         "Country": "El Salvador",
+        "Industry": "Soybean Farming",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/women/71.jpg",
@@ -30,6 +31,7 @@
         "Interests": "Qui excepteur enim laborum consectetur irure.",
         "City": "Fairlee",
         "Country": "Cocos (Keeling Islands)",
+        "Industry": "Paper Manufacturing",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/women/15.jpg",
@@ -49,6 +51,7 @@
         "Interests": "Non voluptate irure aliquip esse.",
         "City": "Gratton",
         "Country": "Madagascar",
+        "Industry": "Educational Services",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/women/58.jpg",
@@ -68,6 +71,7 @@
         "Interests": "Occaecat reprehenderit veniam ex aliquip.",
         "City": "Waterloo",
         "Country": "Botswana",
+        "Industry": "Health Care",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/women/41.jpg",
@@ -87,6 +91,7 @@
         "Interests": "Ut veniam commodo nostrud nulla laboris esse tempor enim do ea dolor eiusmod commodo eu.",
         "City": "Muse",
         "Country": "Belgium",
+        "Industry": "Public Administration",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/women/20.jpg",
@@ -106,6 +111,7 @@
         "Interests": "Eiusmod incididunt irure veniam non ex nisi aliqua sunt sint ea consequat aute pariatur.",
         "City": "Leming",
         "Country": "Bermuda",
+        "Industry": "null",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/men/11.jpg",
@@ -125,6 +131,7 @@
         "Interests": "Veniam in ex pariatur consectetur dolor minim.",
         "City": "Lowgap",
         "Country": "Niger",
+        "Industry": "null",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/men/26.jpg",
@@ -144,6 +151,7 @@
         "Interests": "Id exercitation ullamco anim deserunt laborum sunt sunt eiusmod.",
         "City": "Westmoreland",
         "Country": "Lebanon",
+        "Industry": "null",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/men/53.jpg",
@@ -163,6 +171,7 @@
         "Interests": "Officia excepteur ipsum laborum non minim dolor in eu deserunt anim aliqua.",
         "City": "Thynedale",
         "Country": "Chad",
+        "Industry": "null",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/men/48.jpg",
@@ -182,6 +191,7 @@
         "Interests": "Ullamco consectetur mollit aliquip et.",
         "City": "Sunwest",
         "Country": "Libya",
+        "Industry": "null",
         "Photos": [
             {
                 "Url": "https://randomuser.me/api/portraits/men/93.jpg",

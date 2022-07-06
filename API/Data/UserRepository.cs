@@ -69,6 +69,11 @@ namespace API.Data
             return await _context.Users.Where(x => x.UserName == username).Select(x => x.Gender).FirstOrDefaultAsync();
         }
 
+        public Task<string> GetUserIndustry(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             return await _context.Users
