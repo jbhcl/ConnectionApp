@@ -7,6 +7,9 @@
 .card-body {
     padding: 0 25px;
 }
+.black_colour{
+    color: rgb(255, 251, 251);
+}
 
 .card-footer {
     padding: 10px 15px;
